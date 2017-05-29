@@ -129,21 +129,21 @@ function initializeMap() {
             var newLocation = job.location;
             if (!(locations.includes(newLocation))) {
                 locations.push(newLocation);
-            };
+            }
         });
         //add all school locations
         education.schools.forEach(function(school) {
             var newLocation = school.location;
             if (!(locations.includes(newLocation))) {
                 locations.push(newLocation);
-            };
+            }
         });
         var newLocation = bio.contacts.location;
         if (!(locations.includes(newLocation))) {
             locations.push(newLocation);
-        };
+        }
         return locations;
-    };
+    }
     console.log(locationFinder());
     /*
     createMapMarker(placeData) reads Google Places search results to create map pins.

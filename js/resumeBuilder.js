@@ -21,7 +21,7 @@ var work = {
             "description": "yoyo"
         }
     ]
-}
+};
 
 var projects = {
     "projects": [{
@@ -37,7 +37,7 @@ var projects = {
             "images": ["images/197x148.gif"]
         }
     ]
-}
+};
 
 var bio = {
     "name": "Jasper Roll",
@@ -51,7 +51,7 @@ var bio = {
         "location": "Berlin, DE",
     },
     "skills": ["Salesforce", "Business"]
-}
+};
 
 var education = {
     "schools": [{
@@ -84,7 +84,7 @@ var education = {
             "url": "www.coursera.com"
         }
     ]
-}
+};
 
 //Header Information
 
@@ -110,7 +110,7 @@ function displayContactInfo() {
             $("#topContacts").append(info);
             $("#footerContacts").append(info);
         });
-    };
+    }
 
 displayContactInfo();
 
@@ -121,8 +121,8 @@ function displaySkills() {
         bio.skills.forEach(function(skill) {
             $("#skills").append(HTMLskills.replace("%data%", skill));
         });
-    };
-};
+    }
+}
 
 displaySkills();
 
@@ -144,8 +144,8 @@ function displayWork() {
             $(".work-entry:last").append(formattedWorkLocation);
             $(".work-entry:last").append(formattedWorkDescription);
         });
-    };
-};
+    }
+}
 
 displayWork();
 
@@ -168,8 +168,8 @@ function displayProjects() {
                 $(".project-entry:last").append(formattedProjectImage);
             });
         });
-    };
-};
+    }
+}
 
 displayProjects();
 
@@ -191,8 +191,8 @@ function displaySchools() {
             $(".education-entry:last").append(formattedSchoolMajor);
 
         });
-    };
-};
+    }
+}
 
 displaySchools();
 
@@ -211,8 +211,8 @@ function displayCourses() {
             $(".education-entry:last").append(formattedOnlineDates);
             $(".education-entry:last").append(formattedOnlineURL);
         });
-    };
-};
+    }
+}
 
 displayCourses();
 
