@@ -45,6 +45,7 @@ var bio = {
     "welcomeMessage": "Hello to my CV",
     "biopic": "images/jaro-q-600_medium_2x.jpg",
     "contacts": {
+        "mobile": "+49123456789",
         "email": "jasper.roll@omnify.de",
         "github": "jRsoLi",
         "twitter": "Ja_Roll",
@@ -59,29 +60,29 @@ var education = {
             "location": "Vallendar, DE",
             "degree": "Bachelor of Science",
             "dates": "2011-2013",
-            "url": "www.whu.edu",
-            "major": "Business Administration"
+            "url": "http://www.whu.edu",
+            "majors": ["Business Administration", "Finance"]
         },
         {
             "name": "UNC - Kenan Flegler Business School",
             "location": "Chapel Hill, NC, USA",
             "degree": "Study Abroad Semester",
             "dates": "2015",
-            "url": "www.unc.edu",
-            "major": "Business Administration"
+            "url": "http://www.unc.edu",
+            "majors": ["Business Administration"]
         }
     ],
     "onlineCourses": [{
             "title": "Frontend Nanodegree",
             "school": "Udacity",
             "dates": "2017",
-            "url": "www.udacity.com"
+            "url": "http://www.udacity.com"
         },
         {
             "title": "Python Course",
             "school": "Coursera",
             "dates": "2016",
-            "url": "www.coursera.com"
+            "url": "http://www.coursera.com"
         }
     ]
 };
@@ -94,6 +95,7 @@ var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
 var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 
 var formattedContactInfo = [];
+formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
 formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
 formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
 formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
@@ -105,28 +107,32 @@ $("#header").prepend(formattedName);
 $("#header").append(formattedBioPic);
 $("#header").append(formattedWelcomeMsg);
 
-function displayContactInfo() {
-      formattedContactInfo.forEach(function(info) {
+bio.display = function() {
+
+    function displayContactInfo() {
+        formattedContactInfo.forEach(function(info) {
             $("#topContacts").append(info);
             $("#footerContacts").append(info);
         });
     }
 
-displayContactInfo();
+    function displaySkills() {
+        if (bio.skills.length > 0) {
+            $("#header").append(HTMLskillsStart);
 
-function displaySkills() {
-    if (bio.skills.length > 0) {
-        $("#header").append(HTMLskillsStart);
-
-        bio.skills.forEach(function(skill) {
-            $("#skills").append(HTMLskills.replace("%data%", skill));
-        });
+            bio.skills.forEach(function(skill) {
+                $("#skills").append(HTMLskills.replace("%data%", skill));
+            });
+        }
     }
-}
 
-displaySkills();
+    displayContactInfo();
+    displaySkills();
+};
 
-function displayWork() {
+bio.display();
+
+work.display = function displayWork() {
     if (work.jobs.length > 0) {
         $("#workExperience").append(HTMLworkStart);
 
@@ -145,11 +151,11 @@ function displayWork() {
             $(".work-entry:last").append(formattedWorkDescription);
         });
     }
-}
+};
 
-displayWork();
+work.display();
 
-function displayProjects() {
+projects.display = function displayProjects() {
     if (projects.projects.length > 0) {
         $("#projects").append(HTMLprojectStart);
 
@@ -169,52 +175,59 @@ function displayProjects() {
             });
         });
     }
-}
+};
 
-displayProjects();
+projects.display();
 
-function displaySchools() {
-    if (education.schools.length > 0) {
-        $("#education").append(HTMLonlineClasses.replace("Online Classes", "Schools"));
-        $("#education").append(HTMLschoolStart);
+education.display = function() {
 
-        education.schools.forEach(function(school) {
-            var formattedSchoolName = HTMLschoolName.replace("%data%", school.name).replace("#", school.url);
-            var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
-            var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
-            var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
-            var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.major);
+    function displaySchools() {
+        if (education.schools.length > 0) {
+            $("#education").append(HTMLonlineClasses.replace("Online Classes", "Schools"));
+            $("#education").append(HTMLschoolStart);
 
-            $(".education-entry:last").append(formattedSchoolName + formattedSchoolDegree);
-            $(".education-entry:last").append(formattedSchoolDates);
-            $(".education-entry:last").append(formattedSchoolLocation);
-            $(".education-entry:last").append(formattedSchoolMajor);
+            education.schools.forEach(function(school) {
+                var formattedSchoolName = HTMLschoolName.replace("%data%", school.name).replace("#", school.url);
+                var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
+                var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
+                var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
 
-        });
+                $(".education-entry:last").append(formattedSchoolName + formattedSchoolDegree);
+                $(".education-entry:last").append(formattedSchoolDates);
+                $(".education-entry:last").append(formattedSchoolLocation);
+
+                school.majors.forEach(function(major) {
+                    var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", major);
+                    $(".education-entry:last").append(formattedSchoolMajor);
+                });
+
+            });
+        }
     }
-}
 
-displaySchools();
+    function displayCourses() {
+        if (education.onlineCourses.length > 0) {
+            $("#education").append(HTMLonlineClasses);
+            $("#education").append(HTMLschoolStart);
 
-function displayCourses() {
-    if (education.onlineCourses.length > 0) {
-        $("#education").append(HTMLonlineClasses);
-        $("#education").append(HTMLschoolStart);
+            education.onlineCourses.forEach(function(course) {
+                var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", course.title).replace("#", course.url);
+                var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", course.school);
+                var formattedOnlineDates = HTMLonlineDates.replace("%data%", course.dates);
+                var formattedOnlineURL = HTMLonlineURL.replace("%data%", course.url).replace("#", course.url);
 
-        education.onlineCourses.forEach(function(course) {
-            var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", course.title).replace("#", course.url);
-            var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", course.school);
-            var formattedOnlineDates = HTMLonlineDates.replace("%data%", course.dates);
-            var formattedOnlineURL = HTMLonlineURL.replace("%data%", course.url).replace("#", course.url);
-
-            $(".education-entry:last").append(formattedOnlineTitle + formattedOnlineSchool);
-            $(".education-entry:last").append(formattedOnlineDates);
-            $(".education-entry:last").append(formattedOnlineURL);
-        });
+                $(".education-entry:last").append(formattedOnlineTitle + formattedOnlineSchool);
+                $(".education-entry:last").append(formattedOnlineDates);
+                $(".education-entry:last").append(formattedOnlineURL);
+            });
+        }
     }
-}
 
-displayCourses();
+    displaySchools();
+    displayCourses();
+};
+
+education.display();
 
 function inName(name) {
     name = name.trim().split(" ");

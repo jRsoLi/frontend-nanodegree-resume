@@ -11,7 +11,8 @@ h5,
 h6 {
     padding: 0;
     margin: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: Rubik, sans-serif;
+    font-weight: 900;
 }
 .clear-fix {
     overflow: auto;
@@ -23,7 +24,7 @@ h6 {
 }
 h1 {
     font-size: 40px;
-    color: #f5a623;
+    color: #f52323;
     line-height: 48px;
     display: inline;
 }
@@ -52,6 +53,9 @@ h4,
 h5 {
     padding: 10px 5%;
 }
+
+
+
 .date-text {
     font-style: italic;
     font-size: 14px;
@@ -84,14 +88,14 @@ a {
     line-height: 28px;
 }
 #skills-h3 {
-    color: #f5ae23;
+    color: #f52323;
     display: none;
 }
 .orange {
-    background-color: #f5ae23;
+    background-color: #f52323;
 }
 .orange-text {
-    color: #f5ae23;
+    color: #f52323;
 }
 .white-text {
     font-weight: bold;
@@ -105,7 +109,7 @@ a {
 .dark-gray {
     background-color: #4a4a4a;
 }
-/* TODO: Replace with image later */
+
 
 #header {
     background-color: #484848;
@@ -144,6 +148,9 @@ span {
 }
 #lets-connect {
     text-align: center;
+}
+.lets-connect {
+  color:white;
 }
 #internationalize {
     background-color: #484848;
