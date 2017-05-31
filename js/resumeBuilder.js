@@ -87,27 +87,26 @@ var education = {
     ]
 };
 
-//Header Information
-
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
-var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-var formattedContactInfo = [];
-formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
-formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
-formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
-formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
-
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcomeMsg);
-
 bio.display = function() {
+    //Header Information
+
+    var formattedName = HTMLheaderName.replace("%data%", bio.name);
+    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+    var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
+    var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+
+    var formattedContactInfo = [];
+    formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
+    formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
+    formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
+    formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+    formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
+
+
+    $("#header").prepend(formattedRole);
+    $("#header").prepend(formattedName);
+    $("#header").append(formattedBioPic);
+    $("#header").append(formattedWelcomeMsg);
 
     function displayContactInfo() {
         formattedContactInfo.forEach(function(info) {
@@ -132,7 +131,7 @@ bio.display = function() {
 
 bio.display();
 
-work.display = function displayWork() {
+work.display = function() {
     if (work.jobs.length > 0) {
         $("#workExperience").append(HTMLworkStart);
 
@@ -155,7 +154,7 @@ work.display = function displayWork() {
 
 work.display();
 
-projects.display = function displayProjects() {
+projects.display = function() {
     if (projects.projects.length > 0) {
         $("#projects").append(HTMLprojectStart);
 
